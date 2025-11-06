@@ -50,13 +50,12 @@ export default function Home() {
 
   return (
     <div>
-      <h1>💰 入出金履歴一覧（Next.js + SWR版）</h1>
+      <h1>🐣家計簿アプリ🐣</h1>
 
-      {/* ✅ 集計表 */}
-      <SummaryTable transactions={transactions} />
+        {/* ✅ 一覧テーブル */}
+        <h2>📄 入出金履歴</h2>
 
-      {/* ✅ 一覧テーブル */}
-      <table border={1} cellPadding={8}>
+      <table className="summary-table">
         <thead>
           <tr>
             <th>ID</th>
@@ -73,8 +72,13 @@ export default function Home() {
         </tbody>
       </table>
 
+      {/* ✅ 集計表 */}
+      <SummaryTable transactions={transactions} />
+
+
+
       {/* ✅ 新規登録フォーム */}
-      <h2 style={{ marginTop: "30px" }}>💡 新しい入出金を登録</h2>
+      <h2 style={{ marginTop: "30px" }}>✏️ 新しい入出金を登録</h2>
 
       <form
         onSubmit={(e) => {
@@ -131,9 +135,13 @@ export default function Home() {
           />
         </div>
 
-        <button type="submit" style={{ marginTop: "10px" }}>
-          追加
+        <div className="pl-12 mt-4">
+        <button
+          type="submit"
+          className="relative z-0 h-12 rounded-full bg-blue-500 px-6 text-neutral-50 after:absolute after:left-0 after:top-0 after:-z-10 after:h-full after:w-full after:rounded-full after:bg-blue-500 active:scale-95 active:transition active:after:scale-x-125 active:after:scale-y-150 active:after:opacity-0 active:after:transition active:after:duration-500">
+            登録
         </button>
+        </div>
       </form>
     </div>
   );

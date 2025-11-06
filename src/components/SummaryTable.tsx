@@ -4,6 +4,7 @@ type Props = {
   transactions: Transaction[];
 };
 
+
 export default function SummaryTable({ transactions }: Props) {
   const income = transactions
     .filter((t) => t.type === "収入")
@@ -17,8 +18,16 @@ export default function SummaryTable({ transactions }: Props) {
 
   return (
     <div>
-      <h2>集計表</h2>
-      <table border={1} cellPadding={8}>
+      <h2>💹 集計表</h2>
+
+      <table className="summary-table">
+        <thead>
+          <tr>
+            <th>項目</th>
+            <th>金額</th>
+          </tr>
+        </thead>
+
         <tbody>
           <tr>
             <td>収入</td>
@@ -29,7 +38,7 @@ export default function SummaryTable({ transactions }: Props) {
             <td>{expense.toLocaleString()}円</td>
           </tr>
           <tr>
-            <td>収支差引</td>
+            <td>収支差</td>
             <td>{balance.toLocaleString()}円</td>
           </tr>
         </tbody>
