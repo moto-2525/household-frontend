@@ -85,11 +85,14 @@ export default function Home() {
           e.preventDefault();
           handleSubmit();
         }}
+        className="mt-6 ml-8"
       >
-        <div>
-          <label>日付：</label>
+        {/* 日付 */}
+        <div className="mb-4">
+          <label className="font-medium">日付：</label>
           <input
             type="date"
+            className="border rounded px-2 py-1"
             value={newTransaction.date}
             onChange={(e) =>
               setNewTransaction({ ...newTransaction, date: e.target.value })
@@ -97,9 +100,12 @@ export default function Home() {
             required
           />
         </div>
-        <div>
-          <label>種別：</label>
+        
+        {/* 種別 */}
+        <div className="mb-4">
+        <label className="font-medium">種別：</label>
           <select
+            className="border rounded px-2 py-1"
             value={newTransaction.type}
             onChange={(e) =>
               setNewTransaction({ ...newTransaction, type: e.target.value })
@@ -112,10 +118,12 @@ export default function Home() {
           </select>
         </div>
 
-        <div>
-          <label>金額：</label>
+        {/* 金額 */}
+        <div className="mb-4">
+          <label className="font-medium">金額：</label>
           <input
             type="number"
+            className="border rounded px-2 py-1"
             value={newTransaction.amount}
             onChange={(e) =>
               setNewTransaction({ ...newTransaction, amount: e.target.value })
@@ -124,10 +132,12 @@ export default function Home() {
           />
         </div>
 
-        <div>
-          <label>メモ：</label>
+        {/* メモ */}
+        <div className="mb-4">
+          <label className="font-medium">メモ：</label>
           <input
             type="text"
+            className="border rounded px-2 py-1"
             value={newTransaction.memo}
             onChange={(e) =>
               setNewTransaction({ ...newTransaction, memo: e.target.value })
@@ -138,7 +148,12 @@ export default function Home() {
         <div className="pl-12 mt-4">
         <button
           type="submit"
-          className="relative z-0 h-12 rounded-full bg-blue-500 px-6 text-neutral-50 after:absolute after:left-0 after:top-0 after:-z-10 after:h-full after:w-full after:rounded-full after:bg-blue-500 active:scale-95 active:transition active:after:scale-x-125 active:after:scale-y-150 active:after:opacity-0 active:after:transition active:after:duration-500">
+          className="
+               cursor-pointer
+               relative z-0 h-12 rounded-full 
+               bg-blue-500 hover:bg-blue-600 
+               px-6 text-neutral-50 after:absolute after:left-0 after:top-0 after:-z-10 after:h-full after:w-full after:rounded-full 
+               active:scale-95 active:transition active:after:scale-x-125 active:after:scale-y-150 active:after:opacity-0 active:after:transition active:after:duration-500">
             登録
         </button>
         </div>
