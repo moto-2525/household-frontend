@@ -20,7 +20,10 @@ export default function TransactionRow({ transaction, onClick }: Props) {
   };
 
   return (
-    <tr onClick={handleClick} style={{ cursor: "pointer" }}>
+    <tr 
+      onClick={handleClick} 
+      className="cursor-pointer hover:bg-gray-100 transition"
+      >
       <td>{transaction.id}</td>
       <td>{transaction.date}</td>
       <td>{transaction.type}</td>

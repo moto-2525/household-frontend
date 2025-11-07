@@ -180,29 +180,27 @@ function TransactionRow({ transaction, onClick }) {
     };
     return /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("tr", {
         onClick: handleClick,
-        style: {
-            cursor: "pointer"
-        },
+        className: "cursor-pointer hover:bg-gray-100 transition",
         children: [
             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("td", {
                 children: transaction.id
             }, void 0, false, {
                 fileName: "[project]/src/components/TransactionRow.tsx",
-                lineNumber: 24,
+                lineNumber: 27,
                 columnNumber: 7
             }, this),
             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("td", {
                 children: transaction.date
             }, void 0, false, {
                 fileName: "[project]/src/components/TransactionRow.tsx",
-                lineNumber: 25,
+                lineNumber: 28,
                 columnNumber: 7
             }, this),
             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("td", {
                 children: transaction.type
             }, void 0, false, {
                 fileName: "[project]/src/components/TransactionRow.tsx",
-                lineNumber: 26,
+                lineNumber: 29,
                 columnNumber: 7
             }, this),
             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("td", {
@@ -212,14 +210,14 @@ function TransactionRow({ transaction, onClick }) {
                 ]
             }, void 0, true, {
                 fileName: "[project]/src/components/TransactionRow.tsx",
-                lineNumber: 27,
+                lineNumber: 30,
                 columnNumber: 7
             }, this),
             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("td", {
                 children: transaction.memo
             }, void 0, false, {
                 fileName: "[project]/src/components/TransactionRow.tsx",
-                lineNumber: 28,
+                lineNumber: 31,
                 columnNumber: 7
             }, this)
         ]
@@ -306,6 +304,7 @@ function Home() {
         columnNumber: 29
     }, this);
     return /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
+        className: "max-w-4xl mx-auto px-4",
         children: [
             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("h1", {
                 children: "🐣家計簿アプリ🐣"
@@ -420,7 +419,7 @@ function Home() {
                         className: "mb-4",
                         children: [
                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("label", {
-                                className: "font-medium",
+                                className: "font-medium cursor-pointer",
                                 children: "日付："
                             }, void 0, false, {
                                 fileName: "[project]/src/app/page.tsx",
@@ -429,7 +428,7 @@ function Home() {
                             }, this),
                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("input", {
                                 type: "date",
-                                className: "border rounded px-2 py-1",
+                                className: "border rounded px-2 py-1 cursor-pointer hover:bg-gray-100 transition",
                                 value: newTransaction.date,
                                 onChange: (e)=>setNewTransaction({
                                         ...newTransaction,
@@ -451,7 +450,7 @@ function Home() {
                         className: "mb-4",
                         children: [
                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("label", {
-                                className: "font-medium",
+                                className: "font-medium cursor-pointer",
                                 children: "種別："
                             }, void 0, false, {
                                 fileName: "[project]/src/app/page.tsx",
@@ -459,7 +458,7 @@ function Home() {
                                 columnNumber: 9
                             }, this),
                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("select", {
-                                className: "border rounded px-2 py-1",
+                                className: "border rounded px-2 py-1 cursor-pointer hover:bg-gray-100 transition",
                                 value: newTransaction.type,
                                 onChange: (e)=>setNewTransaction({
                                         ...newTransaction,
@@ -507,7 +506,7 @@ function Home() {
                         className: "mb-4",
                         children: [
                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("label", {
-                                className: "font-medium",
+                                className: "font-medium cursor-pointer",
                                 children: "金額："
                             }, void 0, false, {
                                 fileName: "[project]/src/app/page.tsx",
@@ -516,7 +515,7 @@ function Home() {
                             }, this),
                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("input", {
                                 type: "number",
-                                className: "border rounded px-2 py-1",
+                                className: "border rounded px-2 py-1 cursor-pointer hover:bg-gray-100 transition",
                                 value: newTransaction.amount,
                                 onChange: (e)=>setNewTransaction({
                                         ...newTransaction,
@@ -538,7 +537,7 @@ function Home() {
                         className: "mb-4",
                         children: [
                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("label", {
-                                className: "font-medium",
+                                className: "font-medium cursor-pointer",
                                 children: "メモ："
                             }, void 0, false, {
                                 fileName: "[project]/src/app/page.tsx",
@@ -547,7 +546,7 @@ function Home() {
                             }, this),
                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("input", {
                                 type: "text",
-                                className: "border rounded px-2 py-1",
+                                className: "border rounded px-2 py-1 cursor-pointer hover:bg-gray-100 transition",
                                 value: newTransaction.memo,
                                 onChange: (e)=>setNewTransaction({
                                         ...newTransaction,

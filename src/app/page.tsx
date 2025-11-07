@@ -49,7 +49,7 @@ export default function Home() {
   if (!transactions) return <p>読み込み中...</p>;
 
   return (
-    <div>
+    <div className="max-w-4xl mx-auto px-4">
       <h1>🐣家計簿アプリ🐣</h1>
 
         {/* ✅ 一覧テーブル */}
@@ -89,10 +89,10 @@ export default function Home() {
       >
         {/* 日付 */}
         <div className="mb-4">
-          <label className="font-medium">日付：</label>
+          <label className="font-medium cursor-pointer">日付：</label>
           <input
             type="date"
-            className="border rounded px-2 py-1"
+            className="border rounded px-2 py-1 cursor-pointer hover:bg-gray-100 transition"
             value={newTransaction.date}
             onChange={(e) =>
               setNewTransaction({ ...newTransaction, date: e.target.value })
@@ -103,9 +103,9 @@ export default function Home() {
         
         {/* 種別 */}
         <div className="mb-4">
-        <label className="font-medium">種別：</label>
+        <label className="font-medium cursor-pointer">種別：</label>
           <select
-            className="border rounded px-2 py-1"
+            className="border rounded px-2 py-1 cursor-pointer hover:bg-gray-100 transition"
             value={newTransaction.type}
             onChange={(e) =>
               setNewTransaction({ ...newTransaction, type: e.target.value })
@@ -120,10 +120,10 @@ export default function Home() {
 
         {/* 金額 */}
         <div className="mb-4">
-          <label className="font-medium">金額：</label>
+          <label className="font-medium cursor-pointer">金額：</label>
           <input
             type="number"
-            className="border rounded px-2 py-1"
+            className="border rounded px-2 py-1 cursor-pointer hover:bg-gray-100 transition"
             value={newTransaction.amount}
             onChange={(e) =>
               setNewTransaction({ ...newTransaction, amount: e.target.value })
@@ -134,10 +134,10 @@ export default function Home() {
 
         {/* メモ */}
         <div className="mb-4">
-          <label className="font-medium">メモ：</label>
+          <label className="font-medium cursor-pointer">メモ：</label>
           <input
             type="text"
-            className="border rounded px-2 py-1"
+            className="border rounded px-2 py-1 cursor-pointer hover:bg-gray-100 transition"
             value={newTransaction.memo}
             onChange={(e) =>
               setNewTransaction({ ...newTransaction, memo: e.target.value })
