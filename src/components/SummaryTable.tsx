@@ -9,6 +9,7 @@ export default function SummaryTable({ transactions }: Props) {
   const income = transactions
     .filter((t) => t.type === "収入")
     .reduce((sum, t) => sum + t.amount, 0);
+    console.log(income);
 
   const expense = transactions
     .filter((t) => t.type === "支出")

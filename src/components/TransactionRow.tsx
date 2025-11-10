@@ -15,20 +15,31 @@ export default function TransactionRow({ transaction, onClick }: Props) {
     if (onClick) {
       onClick(transaction);
     } else {
-      router.push(`/transactions/${transaction.id}`); // ✅ Next.js の遷移
+      router.push(`/transactions/${transaction.id}`);
     }
   };
 
   return (
-    <tr 
-      onClick={handleClick} 
+    <tr
+      onClick={handleClick}
       className="cursor-pointer hover:bg-gray-100 transition"
-      >
-      <td>{transaction.id}</td>
-      <td>{transaction.date}</td>
-      <td>{transaction.type}</td>
-      <td>{transaction.amount.toLocaleString()}円</td>
-      <td>{transaction.memo}</td>
+    >
+      {/* ✅ ID は短いので最小幅 */}
+      <td className="min-w-[40px]">{transaction.id}</td>
+
+      {/* ✅ 日付を広めに（改行しない） */}
+      <td className="min-w-[120px] whitespace-nowrap">{transaction.date}</td>
+
+      {/* ✅ 種別は短いのでこのぐらい */}
+      <td className="min-w-[80px] whitespace-nowrap">{transaction.type}</td>
+
+      {/* ✅ 金額も余裕を持たせる */}
+      <td className="min-w-[100px] whitespace-nowrap">
+        {transaction.amount.toLocaleString()}円
+      </td>
+
+      {/* ✅ メモは一番広く！ */}
+      <td className="min-w-[200px]">{transaction.memo}</td>
     </tr>
   );
 }

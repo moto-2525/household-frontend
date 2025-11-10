@@ -149,11 +149,11 @@ export default function Home() {
         <button
           type="submit"
           className="
-               cursor-pointer
-               relative z-0 h-12 rounded-full 
-               bg-blue-500 hover:bg-blue-600 
-               px-6 text-neutral-50 after:absolute after:left-0 after:top-0 after:-z-10 after:h-full after:w-full after:rounded-full 
-               active:scale-95 active:transition active:after:scale-x-125 active:after:scale-y-150 active:after:opacity-0 active:after:transition active:after:duration-500">
+              cursor-pointer
+              relative z-0 h-12 rounded-full 
+              bg-blue-500 hover:bg-blue-600 
+              px-6 text-neutral-50 after:absolute after:left-0 after:top-0 after:-z-10 after:h-full after:w-full after:rounded-full 
+              active:scale-95 active:transition active:after:scale-x-125 active:after:scale-y-150 active:after:opacity-0 active:after:transition active:after:duration-500">
             登録
         </button>
         </div>

@@ -3,11 +3,13 @@ import type { Transaction } from "@/types/Transaction";
 
 export default async function TransactionDetail({ params }: { params: Promise<{ id: string }> }) {
   const { id } = await params;
+  console.log(id);
 
   const data: Transaction = await fetch(
     `http://localhost:3001/transactions/${id}`,
     { cache: "no-store" }
   ).then((res) => res.json());
+  console.log(data);
 
   return (
     <div className="max-w-md mx-auto px-4 mt-10">
