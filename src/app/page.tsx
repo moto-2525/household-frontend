@@ -1,59 +1,86 @@
-"use client";
+'use client';
 
-import useSWR from "swr";
-import { useState } from "react";
+import useSWR, { mutate as globalMutate } from 'swr'; // ← ⭐ グローバル mutate を import
+import { useState } from 'react';
 
-import SummaryTable from "@/components/SummaryTable";
-import TransactionRow from "@/components/TransactionRow";
-import type { Transaction } from "@/types/Transaction";
+import SummaryTable from '@/components/SummaryTable';
+import TransactionRow from '@/components/TransactionRow';
+import type { Transaction } from '@/types/Transaction';
 
 const fetcher = (url: string) => fetch(url).then((res) => res.json());
 
 export default function Home() {
-  // ✅ 一覧取得（SWR）
-  const { data: transactions, mutate } = useSWR<Transaction[]>(
-    "http://localhost:3001/transactions",
-    fetcher
-  );
-
-  // ✅ 新規登録フォーム
+  // ------------------------------------
+  // ⭐ newTransaction の useState が必要！
+  // ------------------------------------
   const [newTransaction, setNewTransaction] = useState({
-    date: "",
-    type: "",
-    amount: "",
-    memo: "",
+    date: '',
+    type: '',
+    amount: '',
+    memo: '',
   });
 
-  // ✅ 登録処理
+  // ------------------------------------
+  // ⭐ 一覧取得
+  // ------------------------------------
+  const { data: transactions, mutate } = useSWR<Transaction[]>(
+    'http://localhost:4000/transactions',
+    fetcher,
+  );
+
+  // ------------------------------------
+  // ⭐ 削除
+  // ------------------------------------
+  const handleDelete = async (id: number) => {
+    await fetch(`http://localhost:4000/transactions/${id}`, {
+      method: 'DELETE',
+    });
+
+    mutate(); // ローカルキャッシュを再読込
+  };
+
+  // ------------------------------------
+  // ⭐ 登録処理
+  // ------------------------------------
   const handleSubmit = async () => {
     try {
-      await fetch("http://localhost:3001/transactions", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
+      const response = await fetch('http://localhost:4000/transactions', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({
           ...newTransaction,
           amount: Number(newTransaction.amount),
         }),
       });
 
-      // フォーム初期化
-      setNewTransaction({ date: "", type: "", amount: "", memo: "" });
+      const created = await response.json();
+      console.log('登録結果:', created);
 
-      // ✅ mutate() で一覧を再取得（SWRの更新）
-      mutate();
+      // フォーム初期化
+      setNewTransaction({
+        date: '',
+        type: '',
+        amount: '',
+        memo: '',
+      });
+
+      // ⭐ SWR の一覧を確実に再取得（キー指定でグローバル mutate を使う）
+      globalMutate('http://localhost:4000/transactions');
     } catch (error) {
-      console.error("登録エラー:", error);
+      console.error('登録エラー:', error);
     }
   };
 
   if (!transactions) return <p>読み込み中...</p>;
 
+  // ------------------------------------
+  // JSX（省略なし）
+  // ------------------------------------
   return (
     <div className="max-w-4xl mx-auto px-4">
       <h1>🐣家計簿アプリ🐣</h1>
 
-        {/* ✅ 一覧テーブル */}
-        <h2>📄 入出金履歴</h2>
+      <h2>📄 入出金履歴</h2>
 
       <table className="summary-table">
         <thead>
@@ -67,18 +94,14 @@ export default function Home() {
         </thead>
         <tbody>
           {transactions.map((t) => (
-            <TransactionRow key={t.id} transaction={t} />
+            <TransactionRow key={t.id} transaction={t} onDelete={handleDelete} />
           ))}
         </tbody>
       </table>
 
-      {/* ✅ 集計表 */}
       <SummaryTable transactions={transactions} />
 
-
-
-      {/* ✅ 新規登録フォーム */}
-      <h2 style={{ marginTop: "30px" }}>✏️ 新しい入出金を登録</h2>
+      <h2 style={{ marginTop: '30px' }}>✏️ 新しい入出金を登録</h2>
 
       <form
         onSubmit={(e) => {
@@ -92,24 +115,20 @@ export default function Home() {
           <label className="font-medium cursor-pointer">日付：</label>
           <input
             type="date"
-            className="border rounded px-2 py-1 cursor-pointer hover:bg-gray-100 transition"
+            className="border rounded px-2 py-1 cursor-pointer"
             value={newTransaction.date}
-            onChange={(e) =>
-              setNewTransaction({ ...newTransaction, date: e.target.value })
-            }
+            onChange={(e) => setNewTransaction({ ...newTransaction, date: e.target.value })}
             required
           />
         </div>
-        
+
         {/* 種別 */}
         <div className="mb-4">
-        <label className="font-medium cursor-pointer">種別：</label>
+          <label className="font-medium cursor-pointer">種別：</label>
           <select
-            className="border rounded px-2 py-1 cursor-pointer hover:bg-gray-100 transition"
+            className="border rounded px-2 py-1 cursor-pointer"
             value={newTransaction.type}
-            onChange={(e) =>
-              setNewTransaction({ ...newTransaction, type: e.target.value })
-            }
+            onChange={(e) => setNewTransaction({ ...newTransaction, type: e.target.value })}
             required
           >
             <option value="">選択してください</option>
@@ -122,12 +141,10 @@ export default function Home() {
         <div className="mb-4">
           <label className="font-medium cursor-pointer">金額：</label>
           <input
-            type="number"
-            className="border rounded px-2 py-1 cursor-pointer hover:bg-gray-100 transition"
+            type="text"
+            className="border rounded px-2 py-1 cursor-pointer"
             value={newTransaction.amount}
-            onChange={(e) =>
-              setNewTransaction({ ...newTransaction, amount: e.target.value })
-            }
+            onChange={(e) => setNewTransaction({ ...newTransaction, amount: e.target.value })}
             required
           />
         </div>
@@ -137,28 +154,21 @@ export default function Home() {
           <label className="font-medium cursor-pointer">メモ：</label>
           <input
             type="text"
-            className="border rounded px-2 py-1 cursor-pointer hover:bg-gray-100 transition"
+            className="border rounded px-2 py-1 cursor-pointer"
             value={newTransaction.memo}
-            onChange={(e) =>
-              setNewTransaction({ ...newTransaction, memo: e.target.value })
-            }
+            onChange={(e) => setNewTransaction({ ...newTransaction, memo: e.target.value })}
           />
         </div>
 
         <div className="pl-12 mt-4">
-        <button
-          type="submit"
-          className="
-              cursor-pointer
-              relative z-0 h-12 rounded-full 
-              bg-blue-500 hover:bg-blue-600 
-              px-6 text-neutral-50 after:absolute after:left-0 after:top-0 after:-z-10 after:h-full after:w-full after:rounded-full 
-              active:scale-95 active:transition active:after:scale-x-125 active:after:scale-y-150 active:after:opacity-0 active:after:transition active:after:duration-500">
+          <button
+            type="submit"
+            className="cursor-pointer bg-blue-500 hover:bg-blue-600 px-6 py-3 rounded-full text-white"
+          >
             登録
-        </button>
+          </button>
         </div>
       </form>
     </div>
   );
 }
-

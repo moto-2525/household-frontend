@@ -1,45 +1,49 @@
-"use client";
-
-import type { Transaction } from "@/types/Transaction";
-import { useRouter } from "next/navigation";
+import Link from 'next/link';
+import type { Transaction } from '@/types/Transaction';
 
 type Props = {
   transaction: Transaction;
-  onClick?: (t: Transaction) => void;
+  onDelete: (id: number) => void;
 };
 
-export default function TransactionRow({ transaction, onClick }: Props) {
-  const router = useRouter();
-
-  const handleClick = () => {
-    if (onClick) {
-      onClick(transaction);
-    } else {
-      router.push(`/transactions/${transaction.id}`);
-    }
-  };
-
+export default function TransactionRow({ transaction, onDelete }: Props) {
   return (
-    <tr
-      onClick={handleClick}
-      className="cursor-pointer hover:bg-gray-100 transition"
-    >
-      {/* ✅ ID は短いので最小幅 */}
-      <td className="min-w-[40px]">{transaction.id}</td>
-
-      {/* ✅ 日付を広めに（改行しない） */}
-      <td className="min-w-[120px] whitespace-nowrap">{transaction.date}</td>
-
-      {/* ✅ 種別は短いのでこのぐらい */}
-      <td className="min-w-[80px] whitespace-nowrap">{transaction.type}</td>
-
-      {/* ✅ 金額も余裕を持たせる */}
-      <td className="min-w-[100px] whitespace-nowrap">
-        {transaction.amount.toLocaleString()}円
+    <tr className="hover:bg-gray-100 cursor-pointer">
+      {/* ID */}
+      <td>
+        <Link href={`/transactions/${transaction.id}`}>
+          {' '}
+          {/*コンポーネントの中で Link を使って “動的ルートに遷移させている”*/}
+          {transaction.id}
+        </Link>
       </td>
 
-      {/* ✅ メモは一番広く！ */}
-      <td className="min-w-[200px]">{transaction.memo}</td>
+      {/* 日付 */}
+      <td>
+        <Link href={`/transactions/${transaction.id}`}>{transaction.date.split('T')[0]}</Link>
+      </td>
+
+      {/* 種別 */}
+      <td>
+        <Link href={`/transactions/${transaction.id}`}>{transaction.type}</Link>
+      </td>
+
+      {/* 金額 */}
+      <td>
+        <Link href={`/transactions/${transaction.id}`}>
+          {transaction.amount.toLocaleString()}円
+        </Link>
+      </td>
+
+      {/* メモ */}
+      <td>
+        <Link href={`/transactions/${transaction.id}`}>{transaction.memo}</Link>
+      </td>
+
+      {/* 削除ボタン */}
+      <td>
+        <button onClick={() => onDelete(transaction.id)}>削除</button>
+      </td>
     </tr>
   );
 }

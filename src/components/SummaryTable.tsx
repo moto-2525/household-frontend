@@ -1,18 +1,16 @@
-import type { Transaction } from "@/types/Transaction";
+import type { Transaction } from '@/types/Transaction';
 
 type Props = {
   transactions: Transaction[];
 };
 
-
 export default function SummaryTable({ transactions }: Props) {
   const income = transactions
-    .filter((t) => t.type === "収入")
+    .filter((t) => t.type === '収入')
     .reduce((sum, t) => sum + t.amount, 0);
-    console.log(income);
 
   const expense = transactions
-    .filter((t) => t.type === "支出")
+    .filter((t) => t.type === '支出')
     .reduce((sum, t) => sum + t.amount, 0);
 
   const balance = income - expense;
